@@ -1,6 +1,10 @@
-_site
+_site/
+_drafts/
+.DS_Store
+.idea/
 .sass-cache
+Gemfile
+Gemfile.lock
+_posts/.MWebMetaData/
 .jekyll-metadata
-jekyll-help-center-theme-0.1.0.gem
-jekyll-help-center-theme.gemspec
-node_modules
+start

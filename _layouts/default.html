@@ -1,27 +1,35 @@
-{% include head.html %}
+---
+layout: compress
+---
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body>
+    {% include sidebar.html %}
 
-<body>
-  <div class="">
-    {% include menu.html %}
+    <main id="main" class="open">
+      {{ content }}
 
-    {{ content }}
+      <div class="footer">
+        <div class="container">
+          <p class="footer-entry">All content is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA</a></p>
+          <p class="footer-entry">Built with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll theme</a> • Hosted on <a href="https://pages.github.com/" target="_blank">Github</a></p>
+        </div>
+      </div>
+    </main>
 
-    {% include footer.html %}
-  </div>
-  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-  <script src="{{ site.baseurl }}/assets/js/simple-jekyll-search.min.js"></script>
-  
-  <script>
-    AOS.init({
-      once: true
-    });
+    <button id="menu" class="open">
+      <span id="menu-icons"></span>
+    </button>
 
-    SimpleJekyllSearch({
-      searchInput: document.getElementById('search-input'),
-      resultsContainer: document.getElementById('results-container'),
-      json: '{{ site.baseurl }}/search.json'
-    })
-  </script>
-</body>
+    <button id="post-toc-menu">
+      <span id="post-toc-menu-icons"></span>
+    </button>
+    <div id="post-toc">
+      <span id="post-toc-title">Table of Contents</span>
+      <ul id="post-toc-ul"></ul>
+    </div>
 
+    {% include scripts.html %}
+  </body>
 </html>

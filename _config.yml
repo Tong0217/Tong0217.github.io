@@ -1,28 +1,50 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
-title: "Help Center"
-email: gusquinalha@gmail.com
-description: "Simple and flexible Jekyll theme for help center."
-baseurl: "/jekyll-help-center-theme"
-url: "http://quinalha.me"
-twitter_username: "gustavoquinalha"
-github_username:  "gustavoquinalha"
-color_theme:  "#0081ff"
-color_text:  "#fff"
-language:  "en"
+title: 闫肃的博客
+email: suyan0830@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  闫肃的博客
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: http://yansu.org # the base hostname & protocol for your site
+rss_url: /pages/feed.xml
+author: Su Yan
+
+# Sidebar filter
+# Choose 'tag' or 'category' as filter in sidebar.
+filter: 'category'
+recent_num: 20
+
+# Social account
+twitter: suyan404
+weibo: suyan0830
+github: suyan
+instagram: suyan404
+linkedin: suyan404
+
+# avatar and Favicon
+avatar: http://imgs.yansu.org/site-avatar.png
+favicon: http://imgs.yansu.org/site-favicon.ico
+
+# disqus config
+disqus:
+  shortname: suyan-zh
+
+# google analytics config
+ga:
+  id: UA-54767140-1
+  url: yansu.org
 
 # Build settings
+permalink: /:year/:month/:day/:title.html
 markdown: kramdown
-permalink: /:title/
-gems: [jekyll-paginate]
-paginate: 5
+highlighter: rouge
+mathjax: disabled
+sass:
+  style: compressed
 
-# Plugins
-plugins_dir:
-  - jekyll-admin
+# Jekyll Plugin
+# https://help.github.com/articles/adding-jekyll-plugins-to-a-github-pages-site/
+gems:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+
