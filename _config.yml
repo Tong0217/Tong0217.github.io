@@ -6,7 +6,7 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: “”
 rss_url: /pages/feed.xml
-author: Su Yan
+author: Tong
 
 # Sidebar filter
 # Choose 'tag' or 'category' as filter in sidebar.
@@ -21,7 +21,7 @@ instagram: suyan404
 linkedin: suyan404
 
 # avatar and Favicon
-avatar: http://imgs.yansu.org/site-avatar.png
+avatar: /img/avatar.png
 favicon: http://imgs.yansu.org/site-favicon.ico
 
 # disqus config
