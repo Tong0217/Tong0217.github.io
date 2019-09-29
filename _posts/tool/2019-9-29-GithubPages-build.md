@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Markdown语法
-category: 技术
+title: Github Pages 搭建
+category: 工具
 tags: Markdown
-description: 写博客用到的常用Markdown语法
+description: githubpages 搭建
 ---
 <https://sspai.com/post/54608>
