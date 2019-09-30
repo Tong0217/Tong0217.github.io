@@ -22,7 +22,7 @@ linkedin: suyan404
 
 # avatar and Favicon
 avatar: /img/avatar.png
-favicon:/img/avatar.png
+favicon: /img/avatar.png
 
 # disqus config
 disqus:
