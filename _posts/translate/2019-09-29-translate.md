@@ -10,3 +10,5 @@ description: 写代码是常用的英文
 * 正数      positive number
 * 负数      negative number
 * 反转      reverse
+* 列        column(col)
+* 行        row
