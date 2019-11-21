@@ -1,8 +1,8 @@
 # Site settings
 title: Tong的博客
-email: suyan0830@gmail.com
+email: 1119208009@qq.com
 description: > # this means to ignore newlines until "baseurl:"
-  闫肃的博客
+  Tong的博客
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: “”
 rss_url: /pages/feed.xml
@@ -11,14 +11,13 @@ author: Tong
 # Sidebar filter
 # Choose 'tag' or 'category' as filter in sidebar.
 filter: 'category'
-recent_num: 20
 
 # Social account
-twitter: suyan404
-weibo: suyan0830
-github: suyan
-instagram: suyan404
-linkedin: suyan404
+twitter:
+weibo:
+github: Tong0217
+instagram:
+linkedin:
 
 # avatar and Favicon
 avatar: /img/avatar.png
@@ -47,4 +46,3 @@ gems:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-feed
-
