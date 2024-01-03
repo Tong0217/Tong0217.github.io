@@ -2,7 +2,7 @@
 layout: post
 title: 负数取模
 category: LeetCode
-tags: Markdown
+tags:
 description: 负数取模
 ---
 不同语言里面，对于整数除法取整的处理方式并不一样。

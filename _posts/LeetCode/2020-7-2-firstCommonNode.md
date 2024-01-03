@@ -2,7 +2,7 @@
 layout: post
 title: 两个链表的首个公共节点
 category: LeetCode
-tags: Markdown
+tags:
 description:
 ---
 ## 描述
