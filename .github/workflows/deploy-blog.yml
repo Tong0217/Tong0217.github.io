@@ -62,6 +62,8 @@ jobs:
           printf '%s\n' "$ECS_SSH_KEY" > ~/.ssh/blog_deploy
           printf '%s\n' "$ECS_KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/blog_deploy ~/.ssh/known_hosts
+          ssh-keygen -y -f ~/.ssh/blog_deploy > ~/.ssh/blog_deploy.pub
+          ssh-keygen -lf ~/.ssh/blog_deploy.pub
         env:
           ECS_SSH_KEY: ${{ secrets.ECS_SSH_KEY }}
           ECS_KNOWN_HOSTS: ${{ secrets.ECS_KNOWN_HOSTS }}
@@ -69,5 +71,5 @@ jobs:
       - name: Deploy to ECS
         run: |
           rsync -rltz --delete \
-            -e "ssh -i ~/.ssh/blog_deploy -p ${ECS_PORT} -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+            -e "ssh -i ~/.ssh/blog_deploy -p ${ECS_PORT} -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o BatchMode=yes -o PasswordAuthentication=no" \
             _site/blog/ "${ECS_USER}@${ECS_HOST}:."
