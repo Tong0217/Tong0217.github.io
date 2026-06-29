@@ -1,0 +1,73 @@
+name: Deploy Blog to ECS
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .github/workflows/deploy-blog.yml
+      - .github/workflows/pages-deploy.yml
+      - .gitignore
+      - README.md
+      - LICENSE
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-blog
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      JEKYLL_ENV: production
+      ECS_HOST: ${{ secrets.ECS_HOST }}
+      ECS_PORT: ${{ secrets.ECS_PORT }}
+      ECS_USER: ${{ secrets.ECS_USER }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build -d _site/blog
+
+      - name: Test site
+        run: |
+          bundle exec htmlproofer _site \
+            --disable-external=true \
+            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+
+      - name: Configure SSH
+        run: |
+          : "${ECS_HOST:?Missing ECS_HOST secret}"
+          : "${ECS_PORT:?Missing ECS_PORT secret}"
+          : "${ECS_USER:?Missing ECS_USER secret}"
+          : "${ECS_SSH_KEY:?Missing ECS_SSH_KEY secret}"
+          : "${ECS_KNOWN_HOSTS:?Missing ECS_KNOWN_HOSTS secret}"
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$ECS_SSH_KEY" > ~/.ssh/blog_deploy
+          printf '%s\n' "$ECS_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/blog_deploy ~/.ssh/known_hosts
+        env:
+          ECS_SSH_KEY: ${{ secrets.ECS_SSH_KEY }}
+          ECS_KNOWN_HOSTS: ${{ secrets.ECS_KNOWN_HOSTS }}
+
+      - name: Deploy to ECS
+        run: |
+          rsync -rltz --delete \
+            -e "ssh -i ~/.ssh/blog_deploy -p ${ECS_PORT} -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+            _site/blog/ "${ECS_USER}@${ECS_HOST}:."
